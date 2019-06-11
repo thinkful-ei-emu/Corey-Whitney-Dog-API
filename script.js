@@ -19,13 +19,16 @@ const getDog = function() {
 
 function numberPolice() {
   console.log($('.numCheck').val());
+  let check = $('.numCheck').val();
+  if (check < 1 || check > 50) {
+    alert('Please choose a number between 1 and 50');
+  } 
 }
-
 
 function handleNewSubmit() {
   $('.buttonSubmit').submit(function(event){
-    alert('Please choose a number between 1 and 50');
     event.preventDefault();
+    numberPolice();
   });
 }
 
@@ -44,6 +47,4 @@ const createImg = function() {
 
 };
 
-getDog();
-handleNewSubmit();
-numberPolice();
+$(getDog,handleNewSubmit);
