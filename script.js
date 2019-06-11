@@ -1,5 +1,5 @@
 'use strict';
-
+//console.log('script.js being connected');
 //user can choose 1-50 img,  print results to console
 //from to have required input field, defualt to 3
 
@@ -7,7 +7,8 @@
 *fetch dog images 1-50
 */
 const getDog = function() {
-  fetch('https://dog.ceo/api/breeds/image/random/3')
+  //console.log('https://dog.ceo/api.breeds/image/random/' + $('.numCheck').val());
+  fetch('https://dog.ceo/api/breeds/image/random/' + $('.numCheck').val())
     .then(response => response.json())
     .then(jsonData => {
       displayDog(jsonData);
@@ -18,17 +19,21 @@ const getDog = function() {
 };
 
 function numberPolice() {
-  console.log($('.numCheck').val());
+  //console.log($('.numCheck').val());
   let check = $('.numCheck').val();
   if (check < 1 || check > 50) {
     alert('Please choose a number between 1 and 50');
+    // Prevent page from rendering
+    
   } 
 }
 
 function handleNewSubmit() {
-  $('.buttonSubmit').submit(function(event){
+  //console.log('handled new submit');
+  $('.form-submission').submit(function(event){
     event.preventDefault();
     numberPolice();
+    getDog();
   });
 }
 
@@ -47,4 +52,7 @@ const createImg = function() {
 
 };
 
-$(getDog,handleNewSubmit);
+function createEventHandlers() {
+  handleNewSubmit();
+}
+$(createEventHandlers);
