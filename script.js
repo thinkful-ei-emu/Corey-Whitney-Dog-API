@@ -24,7 +24,8 @@ function numberPolice() {
   if (check < 1 || check > 50) {
     alert('Please choose a number between 1 and 50');
     // Prevent page from rendering
-    
+  } else {
+    getDog();
   } 
 }
 
@@ -33,7 +34,7 @@ function handleNewSubmit() {
   $('.form-submission').submit(function(event){
     event.preventDefault();
     numberPolice();
-    getDog();
+    //getDog();
   });
 }
 
@@ -41,15 +42,17 @@ const displayDog = function(jsonData) {
   //console.log(jsonData.message);
   let dogArray = jsonData.message;
   dogArray.forEach(function(element) {
-    console.log(element);
+    createImg(element);
   });
 };
 
 /**
  * create img grid
  */
-const createImg = function() {
-
+const createImg = function(element) {
+  $('.dogImg').append(
+    `<img src="${element}" alt="Smiley face" height="175" width="175">`
+  );
 };
 
 function createEventHandlers() {
